@@ -1,3 +1,62 @@
+-- new theme scandinavia (blue & cyan)
+return {
+  {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {
+      style = "storm", 
+      transparent = true, 
+      styles = {
+        sidebars = "transparent",
+        floats = "transparent",
+      },
+      on_highlights = function(hl, c)
+        local neon_blue = "#00F5FF" 
+        local deep_nordic_ice = "#1e2d3d" 
+        hl.CursorLineNr = { fg = neon_blue, bold = true }
+        hl.LineNr = { fg = "#565f89" } 
+        hl.Visual = { bg = deep_nordic_ice }
+        hl.Function = { fg = neon_blue, bold = true }
+        hl.Statement = { fg = neon_blue }
+        hl.Directory = { fg = neon_blue }
+
+        -- Border & Floating Windows 
+        hl.FloatBorder = { fg = neon_blue, bg = "none" }
+        hl.TelescopeBorder = { fg = neon_blue, bg = "none" }
+        hl.TelescopePromptTitle = { fg = neon_blue, bold = true }
+        hl.TelescopePromptPrefix = { fg = neon_blue }
+
+        -- LazyVim Specific UI (Dashboard/Noice)
+        hl.NoiceFormatProgressDone = { bg = neon_blue }
+        hl.LazyProgressDone = { fg = neon_blue }
+      end,
+    },
+  },
+
+  -- 2. Matching Lualine (Status bar)
+  {
+    "nvim-lualine/lualine.nvim",
+    opts = function(_, opts)
+      local neon_blue = "#00F5FF"
+      opts.options.theme = "tokyonight"
+      
+      -- Force the 'A' section (Mode) to be Neon Blue with dark text for legibility
+      opts.sections.lualine_a = {
+        { "mode", color = { fg = "#1a1b26", bg = neon_blue, gui = "bold" } },
+      }
+      -- Force the 'C' section (Filename) to use Neon Blue text
+      opts.sections.lualine_c = {
+        { "filename", color = { fg = neon_blue, gui = "bold" } },
+      }
+    end,
+  },
+}
+
+
+
+-- old theme : crimson (red)
+--[[
 return {
   {
     "folke/tokyonight.nvim",
@@ -54,3 +113,4 @@ return {
     end,
   },
 }
+]]
